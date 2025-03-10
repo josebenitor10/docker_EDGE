@@ -6,10 +6,9 @@
 #
 #
 # How to use it
-# Download or copy/paste this code where you will execite docker ( or podman )
+# Download or copy/paste this code where you will execute docker ( or podman ).
 # Docker/podman require the compose.yaml file to start/stop,download,etc.
 #
-#  THIS IS EASIER AND FASTER THAN TO TYPE OR COPY PASTE SOME DOCKER COMMAND WITH ALL MOUNTING POINTS.
 #  https://hub.docker.com/r/bioedge/edge_24_ubuntu
 # 
 #  To start the container just:

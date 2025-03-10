@@ -2,7 +2,7 @@
 
 ## Intention
 
- To publish an automated solution to use EDGE fast. People that used this does not know how to set it up.
+ To publish an automated solution to use EDGE fast.
  Typing commands is error prone.
 
 

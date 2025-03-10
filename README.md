@@ -14,7 +14,7 @@ https://hub.docker.com/r/bioedge/edge_24_ubuntu
 
 ## How to
 
-1. INstall docker or podman, not discussed here.
+1. Install docker or podman, not discussed here.
 2. Play a little with the command. Do the training
 
 https://docs.docker.com/compose/gettingstarted/
@@ -28,7 +28,7 @@ https://hub.docker.com/r/bioedge/edge_24_ubuntu
 Not  discussed here, may be added later.
 
 6. Some default options should be audited, but you decide.
-seccom:unconfined
+seccom:unconfined for example.
 
 
 The volumens are directories share between the container and the host.
@@ -37,9 +37,9 @@ volumes:
   # Specify an absolute path mapping
   # - /optdatabase/EDGE_database:/home/edge/databse
   - /opt/database:/home/edge/database
-  - /opt/database/EDGE_mysql:/var/lib/mysql
+  - /opt/database/EDGE_mysql:/var/lib/mysql  # DB will run in the host but executed in the container.
   - /opt/data/EDGE_output:/home/edge/edge_dev/edge_ui/EDGE_output
   - /opt/data/EDGE_input:/home/edge/edge_dev/edge_ui/EDGE_input
   - /opt/data/EDGE_report:/home/edge/edge_dev/edge_ui/EDGE_report
-  - /opt/data/docker_edge_compose_dir/backups:/home/edge/backups  # mysqldump,
+  - /opt/data/docker_edge_compose_dir/backups:/home/edge/backups  # To create mysqldumps
   - /opt/data/EDGE_input/public/data/pdd:/home/edge/edge_dev/edge_ui/EDGE_in

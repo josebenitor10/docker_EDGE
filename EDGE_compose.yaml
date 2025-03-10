@@ -1,0 +1,56 @@
+
+
+#########
+#
+#  Be aware that this is a template. You have to update the paths to your configuration.
+#
+#
+# How to use it
+# Download or copy/paste this code where you will execite docker ( or podman )
+# Docker/podman require the compose.yaml file to start/stop,download,etc.
+#
+#  THIS IS EASIER AND FASTER THAN TO TYPE OR COPY PASTE SOME DOCKER COMMAND WITH ALL MOUNTING POINTS.
+#  https://hub.docker.com/r/bioedge/edge_24_ubuntu
+# 
+#  To start the container just:
+#  docker compose up -d
+#  -d = is for detach
+#
+#  Takes about 2 min to load, if conf is good, if not, check for typos or alignment.
+#
+#  To stop: docker compose down
+#
+# The volumes are folders shared between the contaienr and the host.
+
+service:
+	EDGE:
+	  image: bioedge/edge_24_ubuntu
+	  privileged: true
+	  security_opt:
+	    - seccomp:unconfined
+	    # - seccomp=/path/to/seccomp.json
+	    # - apparmor:my-apparmor-profile
+	    # - no_new-privileges
+	  cap_add:
+	    - SYS_ADMIN
+	    - SYS_PTRACE
+	  #cap_drop:
+	  # - ALL
+	  # - SYS_ADMIN
+	  volumes:
+	    # Specify an absolute path mapping
+	    # - /optdatabase/EDGE_database:/home/edge/databse
+            - /opt/database:/home/edge/database
+  	    - /opt/database/EDGE_mysql:/var/lib/mysql
+	    - /opt/data/EDGE_output:/home/edge/edge_dev/edge_ui/EDGE_output
+	    - /opt/data/EDGE_input:/home/edge/edge_dev/edge_ui/EDGE_input
+	    - /opt/data/EDGE_report:/home/edge/edge_dev/edge_ui/EDGE_report
+	    - /opt/data/docker_edge_compose_dir/backups:/home/edge/backups  # mysqldump,
+	    - /opt/data/EDGE_input/public/data/pdd:/home/edge/edge_dev/edge_ui/EDGE_in
+	  ports:
+	    #host_port:container_port
+	    #host_port:container_port/protocol
+	    - "80:80/tcp"  # Apacahe2 Web server
+	    - "8080:8080/tcp"  # Tomcat
+	    # - "3306:3306/tcp"   # mysql, we dont want to expose the DB. You decide.
+	  restart: always
